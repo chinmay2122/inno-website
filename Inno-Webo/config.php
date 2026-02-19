@@ -46,7 +46,7 @@ define('DB_HOST', getenv('mysql.railway.internal'));
 define('DB_USER', getenv('root'));
 define('DB_PASS', getenv('McWQWfspnkEckLGtoqvTbsMqOwrWokVW'));
 define('DB_NAME', getenv('railway'));
-define('DB_PORT', getenv('3306') ?: 3306);
+define('DB_PORT', getenv('3306');
 
 // Create connection with security options
 function getDBConnection() {
