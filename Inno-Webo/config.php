@@ -42,24 +42,23 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-i
 
 // ========== DATABASE CONFIGURATION ==========
 // Support environment variables for production deployment
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
-define('DB_NAME', getenv('DB_NAME') ?: 'innovatex_events');
+define('DB_HOST', getenv('mysql.railway.internal'));
+define('DB_USER', getenv('root'));
+define('DB_PASS', getenv('McWQWfspnkEckLGtoqvTbsMqOwrWokVW'));
+define('DB_NAME', getenv('railway'));
+define('DB_PORT', getenv('3306') ?: 3306);
 
 // Create connection with security options
 function getDBConnection() {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+
     if ($conn->connect_error) {
-        // Don't expose database details in production
         error_log("Database connection failed: " . $conn->connect_error);
         die("Connection failed. Please try again later.");
     }
-    
-    // Set charset to UTF-8 to prevent charset attacks
+
     $conn->set_charset("utf8mb4");
-    
+
     return $conn;
 }
 
